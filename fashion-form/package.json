@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
+    "tailwind:watch": "@tailwindcss/cli -i ./src/index.css -o ./src/tailwind.css --watch",
+    "tailwind:build": "@tailwindcss/cli -i ./src/index.css -o ./src/tailwind.css",
+    "build": "npm run tailwind:build && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
