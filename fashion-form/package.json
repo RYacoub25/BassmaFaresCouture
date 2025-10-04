@@ -10,6 +10,9 @@
     "build": "npm run tailwind:build && vite build",
     "preview": "vite preview"
   },
+  "engines": {
+    "node": "22.x"
+  },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
     "embla-carousel-react": "^8.6.0",
