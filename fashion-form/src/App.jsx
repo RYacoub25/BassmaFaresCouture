@@ -25,7 +25,9 @@ export default function App() {
     email: "",
     phone: "",
     occasion: "wedding",       // wedding | engagement
+    occasionOther: "",
     role: "guest",             // guest | bride | bridesmaid | mother
+    roleOther: "",
     date: "",
     consentWhatsApp: true,
     notes: "",
@@ -36,6 +38,7 @@ export default function App() {
     { value: "bride", label: "Bride" },
     { value: "bridesmaid", label: "Bridesmaid" },
     { value: "mother", label: "Mother of Bride/Groom" },
+    { value: "other", label: "Other" },
   ];
 
   const [status, setStatus] = useState({ type: "idle", message: "" });
@@ -57,7 +60,12 @@ export default function App() {
     const ms = then - now;
     return ms / (1000 * 60 * 60 * 24 * 7);
   };
-  const requiresRush = form.date ? weeksUntil(form.date) < 6 : false;
+
+  const requiredWeeks = form.occasion === "wedding" && form.role === "bride" ? 12 : 6;
+  const requiresRush = form.date ? weeksUntil(form.date) < requiredWeeks : false;
+  const confirmMsg = requiresRush
+    ? `Thanks! We received your request. Note: Your date is under our required lead time (${requiredWeeks >= 12 ? "~3 months" : "6 weeks"}). Our team will contact you about rush availability and applicable fees. A confirmation will be sent to your email and WhatsApp.`
+    : "Thanks! We received your request. We'll email and WhatsApp you a confirmation shortly.";
 
   const isValid =
     form.fullName.trim().length >= 2 &&
@@ -99,7 +107,7 @@ export default function App() {
 
       setStatus({
         type: "success",
-        message: "Appointment request sent! Check your inbox—we’ll follow up shortly.",
+        message: confirmMsg,
       });
 
       // Optional: reset the form after success
@@ -118,8 +126,8 @@ export default function App() {
     <div className="min-h-screen w-full bg-gradient-to-br #f7f3f4 text-black flex items-center justify-center p-4">
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         {/* subtle background orbs */}
-        <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full blur-3xl opacity-20 bg-fuchsia-500" />
-        <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full blur-3xl opacity-20 bg-emerald-500" />
+        <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full blur-3xl opacity-20 bg-yellow-600" />
+        <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full blur-3xl opacity-20 bg-neutral-700" />
       </div>
 
       <form
@@ -132,12 +140,12 @@ export default function App() {
             <img src={logo} alt="Bassma Fares Couture" className="w-80 self-center" />
             <h1 className="text-3xl font-semibold tracking-tight">Bassma Fares Couture</h1>
             <p className="text-black/80 text-sm leading-relaxed">
-              Bespoke couture for moments that matter — bridal, engagement, and refined guestwear crafted with meticulous detail.
-              Book below and let’s create something unforgettable.
+              A couture house devoted to creating one-of-a-kind designs that reflect
+              feminine grace and distinctive allure. Every creation is crafted with precision and artistry, offering a truly luxurious expression of individuality.
             </p>
-            <div className="flex self-center">
+            {/* <div className="flex self-center">
               <CarouselDemo />
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -176,7 +184,19 @@ export default function App() {
             <Select id="occasion" value={form.occasion} onChange={(e) => update("occasion", e.target.value)}>
               <option value="wedding">Wedding</option>
               <option value="engagement">Engagement</option>
+              <option value="other">Other</option>
             </Select>
+            {form.occasion === "other" && (
+              <div className="mt-3">
+                <Label htmlFor="occasionOther" required>Please specify</Label>
+                <Input
+                  id="occasionOther"
+                  placeholder="e.g., Henna, Katb Ketab, Reception, Photoshoot…"
+                  value={form.occasionOther}
+                  onChange={(e) => update("occasionOther", e.target.value)}
+                />
+              </div>
+            )}
           </div>
 
           <div>
@@ -184,8 +204,20 @@ export default function App() {
             <Select id="role" value={form.role} onChange={(e) => update("role", e.target.value)}>
               {ROLES.map((r) => (
                 <option key={r.value} value={r.value}>{r.label}</option>
+
               ))}
             </Select>
+            {form.role === "other" && (
+              <div className="mt-3">
+                <Label htmlFor="roleOther" required>Please specify</Label>
+                <Input
+                  id="roleOther"
+                  placeholder="e.g., Graduate, Maid of Honor..."
+                  value={form.roleOther}
+                  onChange={(e) => update("roleOther", e.target.value)}
+                />
+              </div>
+            )}
           </div>
 
           <div>
@@ -195,8 +227,8 @@ export default function App() {
             {form.date && (
               <p className={`mt-2 text-xs ${requiresRush ? "text-amber-500" : "text-black/60"}`}>
                 {requiresRush
-                  ? "We usually require 6+ weeks. We'll contact you about rush availability and fees."
-                  : "Great! Your date is 6+ weeks out."}
+                  ? `We usually require ${requiredWeeks >= 12 ? "3+ months" : "6+ weeks"} We'll contact you about rush availability and fees.`
+                  : "Great! Your date meets our lead time."}
               </p>
             )}
           </div>
@@ -209,14 +241,14 @@ export default function App() {
               onChange={(e) => update("notes", e.target.value)} />
           </div>
 
-          <div className="sm:col-span-2 flex items-center gap-2">
+          {/* <div className="sm:col-span-2 flex items-center gap-2">
             <input id="consent" type="checkbox" checked={form.consentWhatsApp}
               onChange={(e) => update("consentWhatsApp", e.target.checked)}
               className="h-4 w-4 accent-fuchsia-400" />
             <label htmlFor="consent" className="text-sm text-black/80">
               I agree to receive confirmation via WhatsApp and email.
             </label>
-          </div>
+          </div> */}
         </div>
 
 
