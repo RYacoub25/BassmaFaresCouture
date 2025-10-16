@@ -7,7 +7,7 @@
     "dev": "vite",
     "tailwind:watch": "@tailwindcss/cli -i ./src/index.css -o ./src/tailwind.css --watch",
     "tailwind:build": "@tailwindcss/cli -i ./src/index.css -o ./src/tailwind.css",
-    "build": "npm run tailwind:build && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "engines": {
