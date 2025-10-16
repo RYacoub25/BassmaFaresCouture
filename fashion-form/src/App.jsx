@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../public/logo.jpg";
+import logo from "../public/logo.png";
 import { CarouselDemo } from "./Carousel";
 export default function App() {
 
