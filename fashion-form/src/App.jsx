@@ -61,10 +61,10 @@ export default function App() {
     return ms / (1000 * 60 * 60 * 24 * 7);
   };
 
-  const requiredWeeks = form.occasion === "wedding" && form.role === "bride" ? 12 : 6;
+  const requiredWeeks = form.occasion === "wedding" && form.role === "bride" ? 12 : 5;
   const requiresRush = form.date ? weeksUntil(form.date) < requiredWeeks : false;
   const confirmMsg = requiresRush
-    ? `Thanks! We received your request. Note: Your date is under our required lead time (${requiredWeeks >= 12 ? "~3 months" : "6 weeks"}). Our team will contact you about rush availability and applicable fees. A confirmation will be sent to your email and WhatsApp.`
+    ? `Thanks! We received your request. Note: Your date is under our required lead time (${requiredWeeks >= 12 ? "~3 months" : "5 weeks"}). Our team will contact you about rush availability and applicable fees. A confirmation will be sent to your email and WhatsApp.`
     : "Thanks! We received your request. We'll email and WhatsApp you a confirmation shortly.";
 
   const isValid =
@@ -227,7 +227,7 @@ export default function App() {
             {form.date && (
               <p className={`mt-2 text-xs ${requiresRush ? "text-amber-500" : "text-black/60"}`}>
                 {requiresRush
-                  ? `We usually require ${requiredWeeks >= 12 ? "3+ months" : "6+ weeks"} We'll contact you about rush availability and fees.`
+                  ? `We usually require ${requiredWeeks >= 12 ? "3+ months" : "5+ weeks"} We'll contact you about rush availability and fees.`
                   : "Great! Your date meets our lead time."}
               </p>
             )}
