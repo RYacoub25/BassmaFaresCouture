@@ -150,15 +150,15 @@ export default function App() {
         </div>
 
         {/* Body */}
-        <div className="p-6 sm:p-8 flex flex-col gap-5">
-          <div>
+        <div className="p-6 sm:p-8 flex flex-col gap-5 overflow-hidden">
+          <div className="w-full">
             <Label htmlFor="fullName" required>Full Name</Label>
             <Input id="fullName" placeholder="e.g., Lina Kamal"
               value={form.fullName}
               onChange={(e) => update("fullName", e.target.value)} />
           </div>
 
-          <div>
+          <div className="w-full">
             <Label htmlFor="email" required>Email</Label>
             <Input id="email" type="email" placeholder="name@email.com"
               value={form.email}
@@ -170,14 +170,14 @@ export default function App() {
             )}
           </div>
 
-          <div>
+          <div className="w-full">
             <Label htmlFor="phone" required>Mobile Number (WhatsApp)</Label>
             <Input id="phone" type="tel" placeholder="+20 1X XXX XXXX"
               value={form.phone}
               onChange={(e) => update("phone", e.target.value)} />
           </div>
 
-          <div>
+          <div className="w-full">
             <Label htmlFor="occasion" required>Occasion</Label>
             <Select id="occasion" value={form.occasion} onChange={(e) => update("occasion", e.target.value)}>
               <option value="wedding">Wedding</option>
@@ -197,7 +197,7 @@ export default function App() {
             )}
           </div>
 
-          <div>
+          <div className="w-full">
             <Label htmlFor="role" required>Your Role</Label>
             <Select id="role" value={form.role} onChange={(e) => update("role", e.target.value)}>
               {ROLES.map((r) => (
@@ -218,7 +218,7 @@ export default function App() {
             )}
           </div>
 
-          <div>
+          <div className="w-full">
             <Label htmlFor="date" required>Date of Occasion</Label>
             <Input id="date" type="date" value={form.date}
               onChange={(e) => update("date", e.target.value)} />
@@ -231,7 +231,7 @@ export default function App() {
             )}
           </div>
 
-          <div>
+          <div className="w-full">
             <Label htmlFor="notes">Notes / Inspirations (optional)</Label>
             <Textarea id="notes" rows={4}
               placeholder="Tell us about colors, silhouettes, references, budget, etc."
