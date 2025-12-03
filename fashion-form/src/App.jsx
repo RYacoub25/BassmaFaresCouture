@@ -150,10 +150,8 @@ export default function App() {
         </div>
 
         {/* Body */}
-
-        {/* Body */}
-        <div className="p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div className="sm:col-span-2">
+        <div className="p-6 sm:p-8 flex flex-col gap-5">
+          <div>
             <Label htmlFor="fullName" required>Full Name</Label>
             <Input id="fullName" placeholder="e.g., Lina Kamal"
               value={form.fullName}
@@ -233,7 +231,7 @@ export default function App() {
             )}
           </div>
 
-          <div className="sm:col-span-2">
+          <div>
             <Label htmlFor="notes">Notes / Inspirations (optional)</Label>
             <Textarea id="notes" rows={4}
               placeholder="Tell us about colors, silhouettes, references, budget, etc."
