@@ -291,7 +291,7 @@ function Input(props) {
   return (
     <input
       {...props}
-      className={`w-full rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 placeholder-black/30 shadow-inner ${props.className || ""
+      className={`w-full max-w-full rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 placeholder-black/30 shadow-inner ${props.className || ""
         }`}
     />
   );
