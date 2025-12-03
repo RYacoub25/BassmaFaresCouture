@@ -218,7 +218,7 @@ export default function App() {
             )}
           </div>
 
-          <div className="w-full">
+          <div className="w-full min-w-0">
             <Label htmlFor="date" required>Date of Occasion</Label>
             <Input id="date" type="date" value={form.date}
               onChange={(e) => update("date", e.target.value)} />
@@ -291,8 +291,9 @@ function Input(props) {
   return (
     <input
       {...props}
-      className={`w-full max-w-full rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 placeholder-black/30 shadow-inner ${props.className || ""
+      className={`w-full max-w-full box-border rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 placeholder-black/30 shadow-inner ${props.className || ""
         }`}
+      style={{ minWidth: 0 }}
     />
   );
 }
