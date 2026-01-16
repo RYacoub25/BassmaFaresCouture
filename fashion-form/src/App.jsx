@@ -145,11 +145,11 @@ export default function App() {
       {showSuccess &&
         createPortal(
           <div
-            className="fixed inset-0 z-[99999] bg-black/45 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-[99999] bg-black/45 backdrop-blur-md grid place-items-center p-4"
             role="dialog"
             aria-modal="true"
           >
-            <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+            <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center translate-y-6">
               <div className="mb-4">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full">
                   <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
