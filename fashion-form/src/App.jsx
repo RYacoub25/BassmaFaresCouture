@@ -131,31 +131,6 @@ export default function App() {
       </div>
 
       <div className="relative w-full max-w-3xl">
-        {/* Success Modal */}
-        {status.type === "success" && (
-          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-[9999] pointer-events-auto">
-            <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
-              <div className="mb-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full">
-                  <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                </div>
-              </div>
-              <h2 className="text-2xl font-semibold mb-3 text-black">Thank You!</h2>
-              <p className="text-black/70 mb-6 leading-relaxed">
-                Thank you for booking an appointment. We will contact you soon!
-              </p>
-              <button
-                onClick={() => setStatus({ type: "idle", message: "" })}
-                className="w-full px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
-
         <form
           onSubmit={handleSubmit}
           className="relative w-full max-w-3xl rounded-2xl border border-black/10 bg-black/5 backdrop-blur-xl shadow-2xl"
@@ -300,6 +275,29 @@ export default function App() {
             </button>
           </div>
         </form>
+
+        {/* Success Modal - Below Form */}
+        {status.type === "success" && (
+          <div className="mt-6 bg-white rounded-2xl shadow-2xl p-8 max-w-md mx-auto text-center">
+            <div className="mb-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full">
+                <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+            </div>
+            <h2 className="text-2xl font-semibold mb-3 text-black">Thank You!</h2>
+            <p className="text-black/70 mb-6 leading-relaxed">
+              Thank you for booking an appointment. We will contact you soon!
+            </p>
+            <button
+              onClick={() => setStatus({ type: "idle", message: "" })}
+              className="w-full px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition"
+            >
+              Close
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
