@@ -130,6 +130,31 @@ export default function App() {
         <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full blur-3xl opacity-20 bg-neutral-700" />
       </div>
 
+      {/* Success Modal */}
+      {status.type === "success" && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center animate-in fade-in zoom-in duration-300">
+            <div className="mb-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full">
+                <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+            </div>
+            <h2 className="text-2xl font-semibold mb-3 text-black">Thank You!</h2>
+            <p className="text-black/70 mb-6 leading-relaxed">
+              Thank you for booking an appointment. We will contact you soon!
+            </p>
+            <button
+              onClick={() => setStatus({ type: "idle", message: "" })}
+              className="w-full px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       <form
         onSubmit={handleSubmit}
         className="relative w-full max-w-3xl rounded-2xl border border-black/10 bg-black/5 backdrop-blur-xl shadow-2xl"
