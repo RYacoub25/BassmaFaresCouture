@@ -134,7 +134,7 @@ export default function App() {
       {/* Full-page success overlay */}
       {showSuccess && (
         <div
-          className="fixed inset-0 z-[9999] bg-black/45 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 left-0 top-0 w-screen h-screen z-[9999] bg-black/45 backdrop-blur-md flex items-center justify-center p-4"
           role="dialog"
           aria-modal="true"
         >
