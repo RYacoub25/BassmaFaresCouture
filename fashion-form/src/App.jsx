@@ -130,141 +130,142 @@ export default function App() {
         <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full blur-3xl opacity-20 bg-neutral-700" />
       </div>
 
-      {/* Success Modal */}
-      {status.type === "success" && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-[9999] pointer-events-auto">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
-            <div className="mb-4">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full">
-                <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
+      <div className="relative w-full max-w-3xl">
+        {/* Success Modal */}
+        {status.type === "success" && (
+          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-[9999] pointer-events-auto">
+            <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+              <div className="mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full">
+                  <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
               </div>
+              <h2 className="text-2xl font-semibold mb-3 text-black">Thank You!</h2>
+              <p className="text-black/70 mb-6 leading-relaxed">
+                Thank you for booking an appointment. We will contact you soon!
+              </p>
+              <button
+                onClick={() => setStatus({ type: "idle", message: "" })}
+                className="w-full px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition"
+              >
+                Close
+              </button>
             </div>
-            <h2 className="text-2xl font-semibold mb-3 text-black">Thank You!</h2>
-            <p className="text-black/70 mb-6 leading-relaxed">
-              Thank you for booking an appointment. We will contact you soon!
-            </p>
-            <button
-              onClick={() => setStatus({ type: "idle", message: "" })}
-              className="w-full px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition"
-            >
-              Close
-            </button>
           </div>
-        </div>
-      )}
+        )}
 
-      <form
-        onSubmit={handleSubmit}
-        className="relative w-full max-w-3xl rounded-2xl border border-black/10 bg-black/5 backdrop-blur-xl shadow-2xl"
-      >
-        {/* Header */}
-        <div className="p-6 sm:p-4 border-b border-black/10">
-          <div className="flex flex-col gap-2">
-            <img src={logo} alt="Bassma Fares Couture" className="w-80 self-center" />
-            <h1 className="text-3xl font-semibold tracking-tight">Bassma Fares Couture</h1>
-            <p className="text-black/80 text-sm leading-relaxed">
-              A couture house devoted to creating one-of-a-kind designs that reflect
-              feminine grace and distinctive allure. Every creation is crafted with precision and artistry, offering a truly luxurious expression of individuality.
-            </p>
-            {/* <div className="flex self-center">
+        <form
+          onSubmit={handleSubmit}
+          className="relative w-full max-w-3xl rounded-2xl border border-black/10 bg-black/5 backdrop-blur-xl shadow-2xl"
+        >
+          {/* Header */}
+          <div className="p-6 sm:p-4 border-b border-black/10">
+            <div className="flex flex-col gap-2">
+              <img src={logo} alt="Bassma Fares Couture" className="w-80 self-center" />
+              <h1 className="text-3xl font-semibold tracking-tight">Bassma Fares Couture</h1>
+              <p className="text-black/80 text-sm leading-relaxed">
+                A couture house devoted to creating one-of-a-kind designs that reflect
+                feminine grace and distinctive allure. Every creation is crafted with precision and artistry, offering a truly luxurious expression of individuality.
+              </p>
+              {/* <div className="flex self-center">
               <CarouselDemo />
             </div> */}
-          </div>
-        </div>
-
-        {/* Body */}
-        <div className="p-6 sm:p-8 flex flex-col gap-5 overflow-hidden">
-          <div className="w-full">
-            <Label htmlFor="fullName" required>Full Name</Label>
-            <Input id="fullName" placeholder="e.g., Lina Kamal"
-              value={form.fullName}
-              onChange={(e) => update("fullName", e.target.value)} />
+            </div>
           </div>
 
-          <div className="w-full">
-            <Label htmlFor="email" required>Email</Label>
-            <Input id="email" type="email" placeholder="name@email.com"
-              value={form.email}
-              onChange={(e) => update("email", e.target.value)} />
-            {!form.email ? null : (
-              <p className={`mt-1 text-xs ${isEmailValid(form.email) ? "text-emerald-400" : "text-rose-400"}`}>
-                {isEmailValid(form.email) ? "Looks good" : "Enter a valid email"}
-              </p>
-            )}
-          </div>
+          {/* Body */}
+          <div className="p-6 sm:p-8 flex flex-col gap-5 overflow-hidden">
+            <div className="w-full">
+              <Label htmlFor="fullName" required>Full Name</Label>
+              <Input id="fullName" placeholder="e.g., Lina Kamal"
+                value={form.fullName}
+                onChange={(e) => update("fullName", e.target.value)} />
+            </div>
 
-          <div className="w-full">
-            <Label htmlFor="phone" required>Mobile Number (WhatsApp)</Label>
-            <Input id="phone" type="tel" placeholder="+20 1X XXX XXXX"
-              value={form.phone}
-              onChange={(e) => update("phone", e.target.value)} />
-          </div>
+            <div className="w-full">
+              <Label htmlFor="email" required>Email</Label>
+              <Input id="email" type="email" placeholder="name@email.com"
+                value={form.email}
+                onChange={(e) => update("email", e.target.value)} />
+              {!form.email ? null : (
+                <p className={`mt-1 text-xs ${isEmailValid(form.email) ? "text-emerald-400" : "text-rose-400"}`}>
+                  {isEmailValid(form.email) ? "Looks good" : "Enter a valid email"}
+                </p>
+              )}
+            </div>
 
-          <div className="w-full">
-            <Label htmlFor="occasion" required>Occasion</Label>
-            <Select id="occasion" value={form.occasion} onChange={(e) => update("occasion", e.target.value)}>
-              <option value="wedding">Wedding</option>
-              <option value="engagement">Engagement</option>
-              <option value="other">Other</option>
-            </Select>
-            {form.occasion === "other" && (
-              <div className="mt-3">
-                <Label htmlFor="occasionOther" required>Please specify</Label>
-                <Input
-                  id="occasionOther"
-                  placeholder="e.g., Henna, Katb Ketab, Reception, Photoshoot…"
-                  value={form.occasionOther}
-                  onChange={(e) => update("occasionOther", e.target.value)}
-                />
-              </div>
-            )}
-          </div>
+            <div className="w-full">
+              <Label htmlFor="phone" required>Mobile Number (WhatsApp)</Label>
+              <Input id="phone" type="tel" placeholder="+20 1X XXX XXXX"
+                value={form.phone}
+                onChange={(e) => update("phone", e.target.value)} />
+            </div>
 
-          <div className="w-full">
-            <Label htmlFor="role" required>Your Role</Label>
-            <Select id="role" value={form.role} onChange={(e) => update("role", e.target.value)}>
-              {ROLES.map((r) => (
-                <option key={r.value} value={r.value}>{r.label}</option>
+            <div className="w-full">
+              <Label htmlFor="occasion" required>Occasion</Label>
+              <Select id="occasion" value={form.occasion} onChange={(e) => update("occasion", e.target.value)}>
+                <option value="wedding">Wedding</option>
+                <option value="engagement">Engagement</option>
+                <option value="other">Other</option>
+              </Select>
+              {form.occasion === "other" && (
+                <div className="mt-3">
+                  <Label htmlFor="occasionOther" required>Please specify</Label>
+                  <Input
+                    id="occasionOther"
+                    placeholder="e.g., Henna, Katb Ketab, Reception, Photoshoot…"
+                    value={form.occasionOther}
+                    onChange={(e) => update("occasionOther", e.target.value)}
+                  />
+                </div>
+              )}
+            </div>
 
-              ))}
-            </Select>
-            {form.role === "other" && (
-              <div className="mt-3">
-                <Label htmlFor="roleOther" required>Please specify</Label>
-                <Input
-                  id="roleOther"
-                  placeholder="e.g., Graduate, Maid of Honor..."
-                  value={form.roleOther}
-                  onChange={(e) => update("roleOther", e.target.value)}
-                />
-              </div>
-            )}
-          </div>
+            <div className="w-full">
+              <Label htmlFor="role" required>Your Role</Label>
+              <Select id="role" value={form.role} onChange={(e) => update("role", e.target.value)}>
+                {ROLES.map((r) => (
+                  <option key={r.value} value={r.value}>{r.label}</option>
 
-          <div className="w-full min-w-0">
-            <Label htmlFor="date" required>Date of Occasion</Label>
-            <Input id="date" type="date" value={form.date}
-              onChange={(e) => update("date", e.target.value)} />
-            {form.date && (
-              <p className={`mt-2 text-xs ${requiresRush ? "text-amber-500" : "text-black/60"}`}>
-                {requiresRush
-                  ? `We usually require ${requiredWeeks >= 12 ? "3+ months" : "5+ weeks"} We'll contact you about rush availability and fees.`
-                  : "Great! Your date meets our lead time."}
-              </p>
-            )}
-          </div>
+                ))}
+              </Select>
+              {form.role === "other" && (
+                <div className="mt-3">
+                  <Label htmlFor="roleOther" required>Please specify</Label>
+                  <Input
+                    id="roleOther"
+                    placeholder="e.g., Graduate, Maid of Honor..."
+                    value={form.roleOther}
+                    onChange={(e) => update("roleOther", e.target.value)}
+                  />
+                </div>
+              )}
+            </div>
 
-          <div className="w-full">
-            <Label htmlFor="notes">Notes / Inspirations (optional)</Label>
-            <Textarea id="notes" rows={4}
-              placeholder="Tell us about colors, silhouettes, references, budget, etc."
-              value={form.notes}
-              onChange={(e) => update("notes", e.target.value)} />
-          </div>
+            <div className="w-full min-w-0">
+              <Label htmlFor="date" required>Date of Occasion</Label>
+              <Input id="date" type="date" value={form.date}
+                onChange={(e) => update("date", e.target.value)} />
+              {form.date && (
+                <p className={`mt-2 text-xs ${requiresRush ? "text-amber-500" : "text-black/60"}`}>
+                  {requiresRush
+                    ? `We usually require ${requiredWeeks >= 12 ? "3+ months" : "5+ weeks"} We'll contact you about rush availability and fees.`
+                    : "Great! Your date meets our lead time."}
+                </p>
+              )}
+            </div>
 
-          {/* <div className="sm:col-span-2 flex items-center gap-2">
+            <div className="w-full">
+              <Label htmlFor="notes">Notes / Inspirations (optional)</Label>
+              <Textarea id="notes" rows={4}
+                placeholder="Tell us about colors, silhouettes, references, budget, etc."
+                value={form.notes}
+                onChange={(e) => update("notes", e.target.value)} />
+            </div>
+
+            {/* <div className="sm:col-span-2 flex items-center gap-2">
             <input id="consent" type="checkbox" checked={form.consentWhatsApp}
               onChange={(e) => update("consentWhatsApp", e.target.checked)}
               className="h-4 w-4 accent-fuchsia-400" />
@@ -272,73 +273,73 @@ export default function App() {
               I agree to receive confirmation via WhatsApp and email.
             </label>
           </div> */}
-        </div>
+          </div>
 
 
-        {/* Footer */}
-        <div className="p-6 sm:p-8 border-t border-black/10 flex flex-col  items-center gap-3 sm:gap-4">
-          {status.type !== "idle" && (
-            <p
-              role="status"
-              className={`text-sm flex-1 ${status.type === "success" ? "text-emerald-600" : status.type === "error" ? "text-rose-300" : "text-black/80"
+          {/* Footer */}
+          <div className="p-6 sm:p-8 border-t border-black/10 flex flex-col  items-center gap-3 sm:gap-4">
+            {status.type !== "idle" && (
+              <p
+                role="status"
+                className={`text-sm flex-1 ${status.type === "success" ? "text-emerald-600" : status.type === "error" ? "text-rose-300" : "text-black/80"
+                  }`}
+              >
+                {status.message}
+              </p>
+            )}
+            <button
+              type="submit"
+              disabled={!isValid}
+              className={`w-full sm:w-auto px-5 py-3 rounded-xl font-medium transition flex self-center
+            ${isValid
+                  ? "bg-green-800 text-white hover:translate-y-[-1px] active:translate-y-0"
+                  : "bg-gray-200 text-gray-900 cursor-not-allowed"
                 }`}
             >
-              {status.message}
-            </p>
-          )}
-          <button
-            type="submit"
-            disabled={!isValid}
-            className={`w-full sm:w-auto px-5 py-3 rounded-xl font-medium transition flex self-center
-            ${isValid
-                ? "bg-green-800 text-white hover:translate-y-[-1px] active:translate-y-0"
-                : "bg-gray-200 text-gray-900 cursor-not-allowed"
-              }`}
-          >
-            Request Appointment
-          </button>
-        </div>
-      </form>
-    </div>
-  );
+              Request Appointment
+            </button>
+          </div>
+        </form>
+      </div>
+      );
 }
 
-/* --- Tiny UI primitives built with Tailwind --- */
-function Label({ children, htmlFor, required }) {
+      /* --- Tiny UI primitives built with Tailwind --- */
+      function Label({children, htmlFor, required}) {
   return (
-    <label htmlFor={htmlFor} className="block text-sm mb-2 text-black/80">
-      {children} {required && <span className="text-rose-300">*</span>}
-    </label>
-  );
+      <label htmlFor={htmlFor} className="block text-sm mb-2 text-black/80">
+        {children} {required && <span className="text-rose-300">*</span>}
+      </label>
+      );
 }
 
-function Input(props) {
+      function Input(props) {
   return (
-    <input
-      {...props}
-      className={`w-full max-w-full box-border rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 placeholder-black/30 shadow-inner overflow-hidden ${props.className || ""
-        }`}
-      style={{ minWidth: 0, maxWidth: '100%' }}
-    />
-  );
+      <input
+        {...props}
+        className={`w-full max-w-full box-border rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 placeholder-black/30 shadow-inner overflow-hidden ${props.className || ""
+          }`}
+        style={{ minWidth: 0, maxWidth: '100%' }}
+      />
+      );
 }
 
-function Textarea(props) {
+      function Textarea(props) {
   return (
-    <textarea
-      {...props}
-      className={`w-full rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 placeholder-black/30 shadow-inner ${props.className || ""
-        }`}
-    />
-  );
+      <textarea
+        {...props}
+        className={`w-full rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 placeholder-black/30 shadow-inner ${props.className || ""
+          }`}
+      />
+      );
 }
 
-function Select(props) {
+      function Select(props) {
   return (
-    <select
-      {...props}
-      className={`w-full rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 shadow-inner text-black ${props.className || ""
-        }`}
-    />
-  );
+      <select
+        {...props}
+        className={`w-full rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 shadow-inner text-black ${props.className || ""
+          }`}
+      />
+      );
 }
