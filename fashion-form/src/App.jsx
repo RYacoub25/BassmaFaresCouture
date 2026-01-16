@@ -147,37 +147,66 @@ export default function App() {
       {showSuccess &&
         createPortal(
           <div
-            className="fixed inset-0 z-[999999] grid place-items-center p-6"
+            id="success-overlay"
             style={{
-              height: "100dvh",            // visible viewport height on iPhone
+              position: "fixed",
+              inset: 0,
               width: "100vw",
+              height: "100dvh",
               background: "rgba(0,0,0,0.45)",
-              backdropFilter: "blur(10px)", // blur the form behind
-              WebkitBackdropFilter: "blur(10px)",
+              backdropFilter: "blur(6px)",
+              WebkitBackdropFilter: "blur(6px)",
+              zIndex: 2147483647, // ✅ max z-index
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "20px",
             }}
             role="dialog"
             aria-modal="true"
           >
-            <div className="w-full max-w-sm rounded-2xl bg-white px-6 py-7 text-center shadow-2xl">
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100">
-                <svg className="h-7 w-7 text-emerald-600" viewBox="0 0 20 20" fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+            <div
+              style={{
+                width: "min(420px, 92vw)",
+                background: "white",
+                borderRadius: "18px",
+                padding: "28px",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.25)",
+                textAlign: "center",
+              }}
+            >
+              <div
+                style={{
+                  margin: "0 auto 16px",
+                  width: 56,
+                  height: 56,
+                  borderRadius: 999,
+                  background: "#d1fae5",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                ✅
               </div>
 
-              <h2 className="mb-2 text-xl font-semibold text-black">Thank You!</h2>
-              <p className="mb-6 text-sm leading-relaxed text-black/70">
+              <h2 style={{ margin: 0, fontSize: 24, fontWeight: 700 }}>Thank You!</h2>
+              <p style={{ marginTop: 10, color: "rgba(0,0,0,0.65)", lineHeight: 1.5 }}>
                 Thank you for booking an appointment. We will contact you soon!
               </p>
 
               <button
-                type="button"
                 onClick={() => setStatus({ type: "idle", message: "" })}
-                className="w-full rounded-xl bg-emerald-600 px-4 py-3 font-medium text-white transition hover:bg-emerald-700 active:scale-[0.99]"
+                style={{
+                  marginTop: 20,
+                  width: "100%",
+                  padding: "12px 14px",
+                  borderRadius: 14,
+                  background: "#166534",
+                  color: "white",
+                  fontWeight: 600,
+                  border: "none",
+                }}
               >
                 Close
               </button>
@@ -185,6 +214,7 @@ export default function App() {
           </div>,
           document.body
         )}
+
 
       <div className={`relative w-full max-w-3xl ${showSuccess ? "blur-sm pointer-events-none select-none" : ""}`} aria-hidden={showSuccess}>
         <form
