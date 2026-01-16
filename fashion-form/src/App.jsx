@@ -127,9 +127,11 @@ export default function App() {
   };
   useEffect(() => {
     if (!showSuccess) return;
-    const prev = document.body.style.overflow;
+    const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => (document.body.style.overflow = prev);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
   }, [showSuccess]);
 
 
@@ -145,32 +147,37 @@ export default function App() {
       {showSuccess &&
         createPortal(
           <div
-            className="fixed left-0 top-0 z-[99999] w-screen bg-black/45 backdrop-blur-md grid place-items-center p-4"
-            style={{ height: "100dvh" }}  // 👈 centers in the *visible* iPhone viewport
+            className="fixed inset-0 z-[999999] grid place-items-center p-6"
+            style={{
+              height: "100dvh",            // visible viewport height on iPhone
+              width: "100vw",
+              background: "rgba(0,0,0,0.45)",
+              backdropFilter: "blur(10px)", // blur the form behind
+              WebkitBackdropFilter: "blur(10px)",
+            }}
             role="dialog"
             aria-modal="true"
           >
-            <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
-              <div className="mb-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full">
-                  <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
+            <div className="w-full max-w-sm rounded-2xl bg-white px-6 py-7 text-center shadow-2xl">
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100">
+                <svg className="h-7 w-7 text-emerald-600" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clipRule="evenodd"
+                  />
+                </svg>
               </div>
 
-              <h2 className="text-2xl font-semibold mb-3 text-black">Thank You!</h2>
-              <p className="text-black/70 mb-6 leading-relaxed">
+              <h2 className="mb-2 text-xl font-semibold text-black">Thank You!</h2>
+              <p className="mb-6 text-sm leading-relaxed text-black/70">
                 Thank you for booking an appointment. We will contact you soon!
               </p>
 
               <button
+                type="button"
                 onClick={() => setStatus({ type: "idle", message: "" })}
-                className="w-full px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition"
+                className="w-full rounded-xl bg-emerald-600 px-4 py-3 font-medium text-white transition hover:bg-emerald-700 active:scale-[0.99]"
               >
                 Close
               </button>
@@ -179,7 +186,7 @@ export default function App() {
           document.body
         )}
 
-      <div className={`relative w-full max-w-3xl ${showSuccess ? "pointer-events-none select-none" : ""}`} aria-hidden={showSuccess}>
+      <div className={`relative w-full max-w-3xl ${showSuccess ? "blur-sm pointer-events-none select-none" : ""}`} aria-hidden={showSuccess}>
         <form
           onSubmit={handleSubmit}
           className="relative w-full max-w-3xl rounded-2xl border border-black/10 bg-black/5 backdrop-blur-xl shadow-2xl"
