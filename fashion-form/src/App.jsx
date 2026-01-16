@@ -301,45 +301,46 @@ export default function App() {
           </div>
         </form>
       </div>
-      );
+    </div>
+  );
 }
 
-      /* --- Tiny UI primitives built with Tailwind --- */
-      function Label({children, htmlFor, required}) {
+/* --- Tiny UI primitives built with Tailwind --- */
+function Label({ children, htmlFor, required }) {
   return (
-      <label htmlFor={htmlFor} className="block text-sm mb-2 text-black/80">
-        {children} {required && <span className="text-rose-300">*</span>}
-      </label>
-      );
+    <label htmlFor={htmlFor} className="block text-sm mb-2 text-black/80">
+      {children} {required && <span className="text-rose-300">*</span>}
+    </label>
+  );
 }
 
-      function Input(props) {
+function Input(props) {
   return (
-      <input
-        {...props}
-        className={`w-full max-w-full box-border rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 placeholder-black/30 shadow-inner overflow-hidden ${props.className || ""
-          }`}
-        style={{ minWidth: 0, maxWidth: '100%' }}
-      />
-      );
+    <input
+      {...props}
+      className={`w-full max-w-full box-border rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 placeholder-black/30 shadow-inner overflow-hidden ${props.className || ""
+        }`}
+      style={{ minWidth: 0, maxWidth: '100%' }}
+    />
+  );
 }
 
-      function Textarea(props) {
+function Textarea(props) {
   return (
-      <textarea
-        {...props}
-        className={`w-full rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 placeholder-black/30 shadow-inner ${props.className || ""
-          }`}
-      />
-      );
+    <textarea
+      {...props}
+      className={`w-full rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 placeholder-black/30 shadow-inner ${props.className || ""
+        }`}
+    />
+  );
 }
 
-      function Select(props) {
+function Select(props) {
   return (
-      <select
-        {...props}
-        className={`w-full rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 shadow-inner text-black ${props.className || ""
-          }`}
-      />
-      );
+    <select
+      {...props}
+      className={`w-full rounded-xl bg-black/5 border border-black/15 focus:border-black/40 focus:outline-none px-4 py-3 shadow-inner text-black ${props.className || ""
+        }`}
+    />
+  );
 }
