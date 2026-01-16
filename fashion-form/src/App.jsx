@@ -132,8 +132,8 @@ export default function App() {
 
       {/* Success Modal */}
       {status.type === "success" && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center animate-in fade-in zoom-in duration-300">
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-[9999] pointer-events-auto">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
             <div className="mb-4">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full">
                 <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
